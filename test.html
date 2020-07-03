@@ -28,12 +28,11 @@
 <body>
 
 
-
-
-
     <div id="container"></div>
     <script type="text/babel">
         var destination = document.querySelector("#container");
+
+        // printStuff(...items) 노트사용
 
 
         //function시험-------------------------------------------------------
@@ -92,45 +91,79 @@
         // }
 
 
-        class Display extends React.Component {
-            render() {
-                return (
-                    <div>
-                        <p>{this.props.color}</p>
-                        <p>{this.props.num}</p>
-                        <p>{this.props.size}</p>
-                    </div>
-                );
-            }
-        }
-        class Label extends React.Component {
-            render() {
-                return (
-                    <Display color={this.props.color}
-                        num={this.props.num}
-                        size={this.props.size} />
-                );
+        // var items=["1","2","3"]
+        // function printStuff(a,b,c)
+        // {
+        //     console.log("printing "+ a + " "+b+"  "+c)
+        // }
+        // printStuff(...items)
 
+        /////////////////////////////////////////////////////////////////
+        // class Stuff extends React.Component {// 이게 안된다
+        //     render() {
+        //         return (
+        //             <>
+        //                 <p> i am</p>
+        //                 <p>returning a list</p>
+        //                 <p>of things </p>
+        //             </>
+        //         );
+        //     }
+        // }
+        /////////////////////////////////////////////////////////////////
+        class LightningCounter extends React.Component {
+            constructor(props) {
+                super(props);
+
+                this.state = {     strikes: 0
+                }
+                this.timerTick = this.timerTick.bind(this);
             }
-        }
-        class Shirt extends React.Component {
+
+            timerTick() {
+                this.setState({
+                    strikes: this.state.strikes+100
+                });
+            }
+
+
+            componentDidMount() {
+                setInterval(this.timerTick, 1000);
+            }
+
+
             render() {
+
                 return (
-                    <div>
-                        <Label color={this.props.color}
-                            num={this.props.num}
-                            size={this.props.size} />
-                    </div>
+                    <h1>{this.state.strikes}</h1>
                 );
             }
         }
+
+        class LightningCounterDisplay extends React.Component {
+            render() {
+                var divStyle = {
+                    width: 250,
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    padding: 40,
+                    fontFamily: "fantasy",
+                    color: "#999",
+                    borderRadius: 10
+                };
+                return (
+
+                    <div style={divStyle}>
+                        <LightningCounter />
+                    </div>
+                )
+            }
+        }
+
         ReactDOM.render(
-            <div>
-                <Shirt color="steelblue" num="3.14" size="medium" />
-            </div>,
+            <LightningCounterDisplay />,
             document.querySelector("#container")
         );
-
 
     </script>
 </body>
