@@ -136,17 +136,17 @@
             };
         this.increase=this.increase.bind(this);
         }
-    // increase(e) {
-    //     var currentCounter=this.state.count;
-    //     if(e.shiftKey){
-    //         currentCounter+=10;}
-    //     else{
-    //         currentCounter+=1;
-    //     }
-    //     this.setState({
-    //         count:currentCounter
-    //     });
-    //     }
+    increase(e) {
+        var currentCounter=this.state.count;
+        if(e.shiftKey){
+            currentCounter+=10;}
+        else{
+            currentCounter+=1;
+        }
+        this.setState({
+            count:currentCounter
+        });
+        }
         increase(e) {
            this.setState({
                count:this.state.count+1
@@ -182,6 +182,8 @@
             )
         }
     }
+
+
 
     ReactDOM.render(
         <div>
