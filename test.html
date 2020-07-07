@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- ctrl alt l 들여쓰기-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <title>react reactt</title>
+    <title>react react</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
     <style>
-        #container .letter {
-            padding: 10px;
-            margin: 10px;
-            background-color: aquamarine;
-            color: burlywood;
-            display: inline-block;
-            font-family: monospace;
-            font-size: 32px;
-            text-align: center;
+        #container {
+            padding: 50px;
+            background-color: #FFF;
         }
     </style>
 
@@ -28,144 +22,175 @@
 <body>
 
 
-    <div id="container"></div>
-    <script type="text/babel">
-        var destination = document.querySelector("#container");
+<div id="container"></div>
+<script type="text/babel">
+    var destination = document.querySelector("#container");
 
-        // printStuff(...items) 노트사용
+    // printStuff(...items) 노트사용
 
 
-        //function시험-------------------------------------------------------
-        // function getDistance(spead, time) {
-        //     var result = spead * time
-        //     alert(result);
-        //     console.log(result)
-        // }
+    //function시험-------------------------------------------------------
+    // function getDistance(spead, time) {
+    //     var result = spead * time
+    //     alert(result);
+    //     console.log(result)
+    // }
 
-        const getDistance = (speed, time) => {
-            var result = speed * time
-            alert(result);
+    const getDistance = (speed, time) => {
+        var result = speed * time
+        alert(result);
+    }
+
+    //-------------------------------------------------------
+
+
+    //class시험-------------------------------------------------------
+
+    class Hello extends React.Component {
+        render() {
+            return <p> hellow bro</p>
+        }
+    }
+
+
+    // ReactDOM.render(
+    //     <Hello/>,document.querySelector("#container")
+    // )
+
+    //--------------------------------------------------------
+
+    // 기본적인 양식
+    // ReactDOM.render(
+    //     <div>
+    //         <h1>be</h1>
+    //         <h1>be</h1>
+    //         <h1>be</h1>
+    //         <h1>be</h1>
+    //         <h1>be</h1>
+    //     </div>, document.querySelector("#container")
+    // )
+
+
+    // class Letter extends React.Component {
+    //     render() {
+    //         return (
+    //             <div className="letter">
+
+    //                 {this.props.children + " " + this.props.a}
+    //             </div>
+    //         );
+    //     }
+    // }
+
+
+    // var items=["1","2","3"]
+    // function printStuff(a,b,c)
+    // {
+    //     console.log("printing "+ a + " "+b+"  "+c)
+    // }
+    // printStuff(...items)
+
+    /////////////////////////////////////////////////////////////////
+    // class Stuff extends React.Component {// 이게 안된다
+    //     render() {
+    //         return (
+    //             <>
+    //                 <p> i am</p>
+    //                 <p>returning a list</p>
+    //                 <p>of things </p>
+    //             </>
+    //         );
+    //     }
+    // }
+    /////////////////////////////////////////////////////////////////
+
+    class Counter extends React.Component {
+        render() {
+            var textStyle = {
+                fontSize: 72,
+                fontFamily: "sans-serif",
+                color: "blue",
+                fontWeight: "bold"
+            };
+            return (
+                <div style={textStyle}>
+                    {this.props.display}
+                </div>
+            );
+        }
+    }
+    class PlusButton extends React.Component{
+        render(){
+            return(
+                <button onClick={this.props.clickHandler}>
+                    +
+                </button>
+            );
+        }
+    }
+    class CounterParent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                count: 0
+            };
+        this.increase=this.increase.bind(this);
+        }
+    // increase(e) {
+    //     var currentCounter=this.state.count;
+    //     if(e.shiftKey){
+    //         currentCounter+=10;}
+    //     else{
+    //         currentCounter+=1;
+    //     }
+    //     this.setState({
+    //         count:currentCounter
+    //     });
+    //     }
+        increase(e) {
+           this.setState({
+               count:this.state.count+1
+           });
         }
 
-        //-------------------------------------------------------
+        render() {
+            var backgroundStyle = {
+                padding: 50,
+                backgroundColor: "red",
+                width: 250,
+                height: 100,
+                borderRadius: 10,
+                textAlign: "center"
+            };
+
+            var buttonStyle = {
+                fontSize: "1em",
+                width: 30,
+                height: 30,
+                fontFamily: "sans-serif",
+                color: "#333",
+                fontWeight: "bold",
+                lineHeight: "3px"
+            };
 
 
-        //class시험-------------------------------------------------------
-
-        class Hello extends React.Component {
-            render() {
-                return <p> hellow bro</p>
-            }
+            return (
+                <div style={backgroundStyle}>
+                    <Counter display={this.state.count}/>
+                    <PlusButton clickHandler={this.increase}/>
+                        </div>
+            )
         }
+    }
 
+    ReactDOM.render(
+        <div>
+            <CounterParent/>
 
-        // ReactDOM.render(
-        //     <Hello/>,document.querySelector("#container")
-        // )
+        </div>, destination
+    )
 
-        //--------------------------------------------------------
-
-        // 기본적인 양식
-        // ReactDOM.render(
-        //     <div>
-        //         <h1>be</h1>
-        //         <h1>be</h1>
-        //         <h1>be</h1>
-        //         <h1>be</h1>
-        //         <h1>be</h1>
-        //     </div>, document.querySelector("#container")
-        // )
-
-
-
-
-        // class Letter extends React.Component {
-        //     render() {
-        //         return (
-        //             <div className="letter">
-
-        //                 {this.props.children + " " + this.props.a}
-        //             </div>
-        //         );
-        //     }
-        // }
-
-
-        // var items=["1","2","3"]
-        // function printStuff(a,b,c)
-        // {
-        //     console.log("printing "+ a + " "+b+"  "+c)
-        // }
-        // printStuff(...items)
-
-        /////////////////////////////////////////////////////////////////
-        // class Stuff extends React.Component {// 이게 안된다
-        //     render() {
-        //         return (
-        //             <>
-        //                 <p> i am</p>
-        //                 <p>returning a list</p>
-        //                 <p>of things </p>
-        //             </>
-        //         );
-        //     }
-        // }
-        /////////////////////////////////////////////////////////////////
-        class LightningCounter extends React.Component {
-            constructor(props) {
-                super(props);
-
-                this.state = {     strikes: 0
-                }
-                this.timerTick = this.timerTick.bind(this);
-            }
-
-            timerTick() {
-                this.setState({
-                    strikes: this.state.strikes+100
-                });
-            }
-
-
-            componentDidMount() {
-                setInterval(this.timerTick, 1000);
-            }
-
-
-            render() {
-
-                return (
-                    <h1>{this.state.strikes}</h1>
-                );
-            }
-        }
-
-        class LightningCounterDisplay extends React.Component {
-            render() {
-                var divStyle = {
-                    width: 250,
-                    textAlign: "center",
-                    backgroundColor: "black",
-                    padding: 40,
-                    fontFamily: "fantasy",
-                    color: "#999",
-                    borderRadius: 10
-                };
-                return (
-
-                    <div style={divStyle}>
-                        <LightningCounter />
-                    </div>
-                )
-            }
-        }
-
-        ReactDOM.render(
-            <LightningCounterDisplay />,
-            document.querySelector("#container")
-        );
-
-    </script>
+</script>
 </body>
 
 </html>
